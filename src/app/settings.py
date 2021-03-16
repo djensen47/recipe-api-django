@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'recipes.apps.RecipesConfig',
 ]
 
 MIDDLEWARE = [
@@ -78,7 +79,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'HOST': os.environ.get('DB_HOST') or 'localhost',
-        'NAME': os.environ.get('DB_NAME') or 'recipe_db',
+        'NAME': os.environ.get('DB_NAME') or 'recipes',
         'USER': os.environ.get('DB_USER') or '',
         'PASSWORD': os.environ.get('DB_PASS') or '',
     }
