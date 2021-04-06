@@ -9,7 +9,9 @@ class IngredientSerializer(serializers.ModelSerializer):
 
 
 class RecipeSerializer(serializers.ModelSerializer):
-    """ A `Recipe` is a list of ingredients. """
+    """
+    A `Recipe` is a list of ingredients with a name and description.
+    """
     ingredients = IngredientSerializer(many=True)
 
     class Meta:

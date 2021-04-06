@@ -26,13 +26,14 @@ from .serializers import RecipeSerializer, IngredientSerializer
 )
 class RecipeViewSet(viewsets.ModelViewSet):
     """
-    Returns a list of recipes _with_ their **ingredients**.
+    Endpoints for listing, creating, viewing, updating, and deleting recipes.
 
-    For more details, [Learn to Cook](http://google.com)
+    If you need some inspiration for recipes, try [The Spruce Eats](https://www.thespruceeats.com/)
     """
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
 
+    # Note, this method is unnecessary. It's here as an example.
     def create(self, request, *args, **kwargs):
         """
         Example 2: Document the API in a docstring. This option might be the most limiting.
@@ -48,11 +49,3 @@ class RecipeViewSet(viewsets.ModelViewSet):
     def random(self):
         return random.choice(self.queryset)
 
-
-class IngredientList(APIView):
-    """" List or create ingredients"""
-
-    def get(self, request: Request, format=None) -> Response:
-        ingredients = Ingredient.objects.all()
-        serializer = IngredientSerializer(ingredients, many=True)
-        return Response(serializer.data)

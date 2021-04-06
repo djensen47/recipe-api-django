@@ -9,7 +9,5 @@ router.register(r'recipes', views.RecipeViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('ingredients', views.IngredientList.as_view()),
 ]
 
-# urlpatterns = format_suffix_patterns(urlpatterns)
