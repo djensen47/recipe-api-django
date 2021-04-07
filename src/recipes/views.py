@@ -1,17 +1,11 @@
 from random import random
 
-from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
-from rest_framework.parsers import JSONParser
-from rest_framework.response import Response
-from rest_framework.request import Request
-from rest_framework.views import APIView
 
-from .models import Recipe, Ingredient
-from .serializers import RecipeSerializer, IngredientSerializer
+from .models import Recipe
+from .serializers import RecipeSerializer
 
 
 @extend_schema_view(
