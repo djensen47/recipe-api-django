@@ -36,7 +36,6 @@ class RecipeListTestCase(TestCase):
         response = self.client.get('/recipes')
         data = response.data
         assert_that(response.status_code).is_equal_to(status.HTTP_200_OK)
-        assert_that(len(data[0]['ingredients'])).is_greater_than(0)
         assert_that(data).is_equal_to([serialized_recipe])
 
     def test_should_return_recipes_with_no_ingredients(self) -> None:
@@ -59,10 +58,6 @@ class RecipeListTestCase(TestCase):
         data = response.data
         assert_that(response.status_code).is_equal_to(status.HTTP_200_OK)
         assert_that(data).is_equal_to(serialized_recipes)
-
-
-class RecipeGetTestCase(TestCase):
-    pass
 
 
 class RecipeCreateTestCase(TestCase):
