@@ -7,4 +7,6 @@ psycopg2-binary>=2.8.6,<2.9.0
 PyYAML==5.4.1
 uritemplate==3.0.1
 drf-spectacular==0.14.0
+assertpy==1.1
+factory_boy==3.2
 
