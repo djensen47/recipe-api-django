@@ -32,3 +32,7 @@ class RecipeGetTestCase(TestCase):
         data = response.data
         assert_that(response.status_code).is_equal_to(status.HTTP_200_OK)
         assert_that(data).is_equal_to(serialized_recipe)
+
+    def test_should_return_404(self) -> None:
+        response = self.client.get(f'/recipes/1000')
+        assert_that(response.status_code).is_equal_to(status.HTTP_404_NOT_FOUND)
