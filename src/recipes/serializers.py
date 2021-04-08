@@ -36,6 +36,7 @@ class RecipeSerializer(serializers.ModelSerializer):
         return recipe
 
     def validate(self, data):
+        super().validate(data)
         if hasattr(self, 'initial_data'):
             unknown_keys = set(self.initial_data.keys()) - set(self.fields.keys())
             if unknown_keys:
