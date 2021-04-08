@@ -10,8 +10,9 @@ LIST_SIZE = 3
 
 
 class RecipeListTestCase(TestCase):
-    def setUp(self) -> None:
-        self.client = APIClient()
+    @classmethod
+    def setUpTestData(cls) -> None:
+        cls.client = APIClient()
 
     def test_should_return_empty_list(self) -> None:
         response = self.client.get('/recipes')

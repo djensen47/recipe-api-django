@@ -10,8 +10,9 @@ LIST_SIZE = 3
 
 
 class RecipeCreateTestCase(TestCase):
-    def setUp(self) -> None:
-        self.client = APIClient()
+    @classmethod
+    def setUpTestData(cls) -> None:
+        cls.client = APIClient()
 
     def test_should_return_404(self) -> None:
         response = self.client.delete(f'/recipes/1000')

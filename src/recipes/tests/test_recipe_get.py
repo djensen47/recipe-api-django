@@ -10,8 +10,9 @@ LIST_SIZE = 3
 
 
 class RecipeGetTestCase(TestCase):
-    def setUp(self) -> None:
-        self.client = APIClient()
+    @classmethod
+    def setUpTestData(cls) -> None:
+        cls.client = APIClient()
 
     def test_should_return_recipe_with_no_ingredients(self) -> None:
         recipe = RecipeFactory(ingredients=None)

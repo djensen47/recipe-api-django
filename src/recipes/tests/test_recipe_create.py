@@ -11,8 +11,9 @@ LIST_SIZE = 3
 
 
 class RecipeCreateTestCase(TestCase):
-    def setUp(self) -> None:
-        self.client = APIClient()
+    @classmethod
+    def setUpTestData(cls) -> None:
+        cls.client = APIClient()
 
     def test_should_create_recipe_without_ingredients(self) -> None:
         # use .build() so that we don't persist to the database
