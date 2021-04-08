@@ -13,7 +13,7 @@ LIST_SIZE = 3
 class RecipeCreateTestCase(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
-        cls.client = APIClient()
+        cls.api_client = APIClient()
 
     def test_should_create_recipe_without_ingredients(self) -> None:
         # use .build() so that we don't persist to the database
@@ -21,7 +21,7 @@ class RecipeCreateTestCase(TestCase):
         data = RecipeSerializer(recipe).data
         del data['id']
 
-        response = self.client.post('/recipes', data, format='json')
+        response = self.api_client.post('/recipes', data, format='json')
         db_recipe = Recipe.objects.get(id=response.data['id'])
         db_data = RecipeSerializer(db_recipe).data
         del db_data['id']
@@ -37,7 +37,7 @@ class RecipeCreateTestCase(TestCase):
         data = RecipeSerializer(recipe).data
         del data['id']
 
-        response = self.client.post('/recipes', data, format='json')
+        response = self.api_client.post('/recipes', data, format='json')
         db_recipe = Recipe.objects.get(id=response.data['id'])
         db_data = RecipeSerializer(db_recipe).data
         del db_data['id']
@@ -51,7 +51,7 @@ class RecipeCreateTestCase(TestCase):
         del data['id']
         del data['name']
 
-        response = self.client.post('/recipes', data, format='json')
+        response = self.api_client.post('/recipes', data, format='json')
         assert_that(response.status_code).is_equal_to(status.HTTP_400_BAD_REQUEST)
 
     def test_should_return_400_when_sent_extra_fields(self) -> None:
@@ -60,5 +60,5 @@ class RecipeCreateTestCase(TestCase):
         data['foo'] = 'bar'
         del data['id']
 
-        response = self.client.post('/recipes', data, format='json')
+        response = self.api_client.post('/recipes', data, format='json')
         assert_that(response.status_code).is_equal_to(status.HTTP_400_BAD_REQUEST)

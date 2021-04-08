@@ -12,10 +12,10 @@ LIST_SIZE = 3
 class RecipeListTestCase(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
-        cls.client = APIClient()
+        cls.api_client = APIClient()
 
     def test_should_return_empty_list(self) -> None:
-        response = self.client.get('/recipes')
+        response = self.api_client.get('/recipes')
         assert_that(response.status_code).is_equal_to(200)
         assert_that(response.data).is_empty()
 
@@ -23,7 +23,7 @@ class RecipeListTestCase(TestCase):
         recipe = RecipeFactory(ingredients=None)
         serialized_recipe = RecipeSerializer(recipe).data
 
-        response = self.client.get('/recipes')
+        response = self.api_client.get('/recipes')
         data = response.data
         assert_that(response.status_code).is_equal_to(status.HTTP_200_OK)
         assert_that(data).is_equal_to([serialized_recipe])
@@ -34,7 +34,7 @@ class RecipeListTestCase(TestCase):
         )
         serialized_recipe = RecipeSerializer(recipe).data
 
-        response = self.client.get('/recipes')
+        response = self.api_client.get('/recipes')
         data = response.data
         assert_that(response.status_code).is_equal_to(status.HTTP_200_OK)
         assert_that(data).is_equal_to([serialized_recipe])
@@ -43,7 +43,7 @@ class RecipeListTestCase(TestCase):
         recipes = RecipeFactory.create_batch(LIST_SIZE, ingredients=None)
         serialized_recipes = RecipeSerializer(recipes, many=True).data
 
-        response = self.client.get('/recipes')
+        response = self.api_client.get('/recipes')
         data = response.data
         assert_that(response.status_code).is_equal_to(status.HTTP_200_OK)
         assert_that(data).is_equal_to(serialized_recipes)
@@ -55,7 +55,7 @@ class RecipeListTestCase(TestCase):
         )
         serialized_recipes = RecipeSerializer(recipes, many=True).data
 
-        response = self.client.get('/recipes')
+        response = self.api_client.get('/recipes')
         data = response.data
         assert_that(response.status_code).is_equal_to(status.HTTP_200_OK)
         assert_that(data).is_equal_to(serialized_recipes)
